@@ -1,12 +1,7 @@
-cloudpickle
 ImageHash
 numpy
 opencv-python
 pandas
 Pillow
-requests
-scikit-image
-scikit-learn
 streamlit
 tensorflow
-libgl1
