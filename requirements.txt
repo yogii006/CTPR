@@ -1,6 +1,6 @@
 pickle
 streamlit
-PIL
-cv2
+pillow
+opencv-python
 numpy
 imagehash
