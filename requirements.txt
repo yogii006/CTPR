@@ -1,5 +1,4 @@
 cloudpickle
-pickle
 ImageHash
 numpy
 opencv-python
