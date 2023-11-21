@@ -1,6 +1,6 @@
 import streamlit as st
 from PIL import Image
-from cv2 import cv2
+#from cv2 import cv2
 from PIL import Image
 from PIL import Image, ImageFilter
 import numpy as np
@@ -42,9 +42,9 @@ if option_chosen == "Image options":
 
             if selected == "Original":
                 st.image(image, caption="Original Image", use_column_width=True)
-            if selected == "Grayscale":
-                image1 = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2GRAY)
-                st.image(image1, caption="Grayscale Image", use_column_width=True)
+            # if selected == "Grayscale":
+            #     image1 = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2GRAY)
+            #     st.image(image1, caption="Grayscale Image", use_column_width=True)
             if selected == "Blur":
 
                 # Apply the blur effect based on the slider value
@@ -55,18 +55,18 @@ if option_chosen == "Image options":
                 st.image(rotated_img, caption=f'Rotated Image (Angle: {rotation_angle} degrees)', use_column_width=True)
 
 
-            if selected == "Segment":
-                img_array = np.array(image)
+            # if selected == "Segment":
+            #     img_array = np.array(image)
 
-                # Perform image segmentation
-                gray = cv2.cvtColor(img_array, cv2.COLOR_RGB2GRAY)
-                ret, thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
-                contours, hierarchy = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+            #     # Perform image segmentation
+            #     gray = cv2.cvtColor(img_array, cv2.COLOR_RGB2GRAY)
+            #     ret, thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
+            #     contours, hierarchy = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
-                # Draw the contours on the image
-                img_contours = cv2.drawContours(img_array, contours, -1, (0, 255, 0), 3)
-                # Display the segmented image
-                st.image(img_contours, caption='Segmented Image', use_column_width=True)
+            #     # Draw the contours on the image
+            #     img_contours = cv2.drawContours(img_array, contours, -1, (0, 255, 0), 3)
+            #     # Display the segmented image
+            #     st.image(img_contours, caption='Segmented Image', use_column_width=True)
 
 if option_chosen == "Similarity":
     col1, col2 = st.columns(2)
