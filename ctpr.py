@@ -6,8 +6,6 @@ from PIL import Image, ImageFilter
 import numpy as np
 import imagehash
 from imagehash import phash
-from skimage import data, segmentation, color
-from skimage.future import graph
 def hamming_distance(bin_str1, bin_str2):
     """
     Calculates the Hamming distance between two binary strings
