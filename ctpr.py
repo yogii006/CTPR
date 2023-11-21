@@ -6,6 +6,7 @@ from PIL import Image, ImageFilter
 import numpy as np
 import imagehash
 from imagehash import phash
+from PIL import Image, ImageOps, ImageFilter
 def hamming_distance(bin_str1, bin_str2):
     """
     Calculates the Hamming distance between two binary strings
@@ -16,6 +17,26 @@ def hamming_distance(bin_str1, bin_str2):
         if bin_str1[i] != bin_str2[i]:
             dist += 1
     return dist
+def segment_image(image):
+    # Convert the image to grayscale
+    gray_image = (image)
+
+    # Convert the grayscale image to a NumPy array
+    gray_array = np.array(gray_image)
+
+    # Reshape the array to a single column
+    reshaped_array = gray_array.reshape(-1, 1)
+
+    # Apply K-means clustering for segmentation
+    k = 2  # Number of clusters (background and foreground)
+    kmeans_centers = np.array([0, 255]).reshape((-1, 1))
+    kmeans_labels = np.argmin(np.abs(reshaped_array - kmeans_centers.T), axis=1)
+    segmented_array = kmeans_centers[kmeans_labels].reshape(gray_array.shape)
+
+    # Convert the segmented array back to an image
+    segmented_image = Image.fromarray(segmented_array.astype(np.uint8))
+
+    return segmented_image
 st.title("Image Editing app")
 default_option = "Image options"
 options = ["Image options", "Similarity"]
@@ -79,12 +100,10 @@ if option_chosen == "Image options":
 
 
             if selected == "Segment":
-                threshold = st.slider("Select a threshold value", 0, 255, 128)
-                grayscale_image = image.convert("L")
-                thresholded_image = np.array(grayscale_image) > threshold
+                segmented_image = segment_image(image)
 
-                # Display the segmented image
-                st.image(thresholded_image, caption="Segmented Image")
+                # Display original and segmented images
+                st.image(segmented_image, caption='Segmented Image', width=300)
             #     img_array = np.array(image)
 
             #     # Perform image segmentation
