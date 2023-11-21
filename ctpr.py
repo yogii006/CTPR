@@ -81,11 +81,12 @@ if option_chosen == "Image options":
 
 
             if selected == "Segment":
-                segments_fz = segmentation.felzenszwalb(np.array(image), scale=100, sigma=0.5, min_size=50)
+                threshold = st.slider("Select a threshold value", 0, 255, 128)
+                grayscale_image = image.convert("L")
+                thresholded_image = np.array(grayscale_image) > threshold
 
                 # Display the segmented image
-                segmented_image = color.label2rgb(segments_fz, np.array(original_image), kind='avg')
-                st.image(segmented_image, caption="Segmented Image")
+                st.image(thresholded_image, caption="Segmented Image")
             #     img_array = np.array(image)
 
             #     # Perform image segmentation
