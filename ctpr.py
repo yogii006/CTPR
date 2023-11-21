@@ -98,27 +98,3 @@ if option_chosen == "Similarity":
         st.write(f"binary hash code of image2 is {bin_value2}")
         st.write(f"hamming distance  {dist}")
         st.write(f"percentage matching of these two images is {(dist / 56 * 100)}%")
-
-#
-# import streamlit as st
-# from PIL import Image, ImageFilter
-#
-# # Set title and header
-# st.title("Image Blur App")
-# st.header("Upload an image and adjust the blur intensity")
-#
-# # Create a widget to upload a file
-# uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "png"])
-#
-# # If a file is uploaded
-# if uploaded_file is not None:
-#     # Load the image
-#     img = Image.open(uploaded_file)
-#     st.image(img, caption='Original Image', use_column_width=True)
-#
-#     # Add a slider to control the blur intensity
-#     blur_intensity = st.slider("Blur Intensity", 0, 100, 0)
-#
-#     # Apply the blur effect based on the slider value
-#     blurred_img = img.filter(ImageFilter.GaussianBlur(blur_intensity))
-#     st.image(blurred_img, caption=f'Blurred Image (Intensity: {blur_intensity})', use_column_width=True)
