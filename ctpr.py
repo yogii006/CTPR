@@ -79,7 +79,11 @@ if option_chosen == "Image options":
 
 
             if selected == "Segment":
-                seg_image = image.segment(method=Image.SEGMENT_NEWBY_SIMS)
+                segments_fz = segmentation.felzenszwalb(np.array(image), scale=100, sigma=0.5, min_size=50)
+
+                # Display the segmented image
+                segmented_image = color.label2rgb(segments_fz, np.array(original_image), kind='avg')
+                st.image(segmented_image, caption="Segmented Image")
             #     img_array = np.array(image)
 
             #     # Perform image segmentation
@@ -90,7 +94,7 @@ if option_chosen == "Image options":
             #     # Draw the contours on the image
             #     img_contours = cv2.drawContours(img_array, contours, -1, (0, 255, 0), 3)
             #     # Display the segmented image
-                st.image(seg_image, caption='Segmented Image', use_column_width=True)
+                # st.image(seg_image, caption='Segmented Image', use_column_width=True)
 
 if option_chosen == "Similarity":
     col1, col2 = st.columns(2)
