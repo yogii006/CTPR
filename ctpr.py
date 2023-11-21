@@ -145,4 +145,4 @@ if option_chosen == "Similarity":
         st.write(f"binary hash code of image1 is {bin_value1}")
         st.write(f"binary hash code of image2 is {bin_value2}")
         st.write(f"hamming distance  {dist}")
-        st.write(f"percentage matching of these two images is {(dist / 56 * 100)}%")
+        st.write(f"percentage matching of these two images is {((56 -dist) / 56 * 100)}%")
