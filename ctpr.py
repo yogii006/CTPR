@@ -29,6 +29,13 @@ if option_chosen == "Image options":
 
         selected = st.selectbox("Select an option", choices, index=choices.index(default_value))
         col4, col5 = st.columns(2)
+
+
+
+        
+
+
+        
         if selected == "Blur":
             blur_intensity = st.slider("Blur Intensity", 0, 50, 0)
         if selected == "Rotate":
@@ -42,9 +49,25 @@ if option_chosen == "Image options":
 
             if selected == "Original":
                 st.image(image, caption="Original Image", use_column_width=True)
-            # if selected == "Grayscale":
-            #     image1 = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2GRAY)
-            #     st.image(image1, caption="Grayscale Image", use_column_width=True)
+            if selected == "Grayscale":
+                image1 = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2GRAY)
+                st.image(image1, caption="Grayscale Image", use_column_width=True)
+
+                img_array = np.array(image)
+                # Compute the grayscale value of each pixel
+                gray_array = np.mean(img_array, axis=2)
+
+                # Replace the RGB values of each pixel with the grayscale value
+                gray_array = np.dstack([gray_array]*3)
+
+                # Convert the numpy array back to a PIL image
+                gray_img = Image.fromarray(np.uint8(gray_array))
+
+                # Display the resulting grayscale image using Streamlit
+                st.image(gray_img, caption='Grayscale Image', use_column_width=True)
+
+
+            
             if selected == "Blur":
 
                 # Apply the blur effect based on the slider value
