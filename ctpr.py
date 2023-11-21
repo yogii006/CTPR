@@ -50,8 +50,8 @@ if option_chosen == "Image options":
             if selected == "Original":
                 st.image(image, caption="Original Image", use_column_width=True)
             if selected == "Grayscale":
-                image1 = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2GRAY)
-                st.image(image1, caption="Grayscale Image", use_column_width=True)
+                # image1 = cv2.cvtColor(np.array(image), cv2.COLOR_RGB2GRAY)
+                # st.image(image1, caption="Grayscale Image", use_column_width=True)
 
                 img_array = np.array(image)
                 # Compute the grayscale value of each pixel
@@ -78,7 +78,8 @@ if option_chosen == "Image options":
                 st.image(rotated_img, caption=f'Rotated Image (Angle: {rotation_angle} degrees)', use_column_width=True)
 
 
-            # if selected == "Segment":
+            if selected == "Segment":
+                seg_image = image.segment(method=Image.SEGMENT_NEWBY_SIMS)
             #     img_array = np.array(image)
 
             #     # Perform image segmentation
@@ -89,7 +90,7 @@ if option_chosen == "Image options":
             #     # Draw the contours on the image
             #     img_contours = cv2.drawContours(img_array, contours, -1, (0, 255, 0), 3)
             #     # Display the segmented image
-            #     st.image(img_contours, caption='Segmented Image', use_column_width=True)
+                st.image(img_contours, caption='Segmented Image', use_column_width=True)
 
 if option_chosen == "Similarity":
     col1, col2 = st.columns(2)
